@@ -28,8 +28,14 @@ public class VehicleInventory {
                 case 1:
                     listAllVehicles();
                     break;
+                case 2:
+                    findVehicleByMakeModel();
+                    break;
                 case 3:
                     findVehiclesByPrice();
+                    break;
+                case 4:
+                    findVehicleByColor();
                     break;
                 case 5:
                     addAVehicle();
@@ -69,21 +75,48 @@ public class VehicleInventory {
 
     }
 
+    /**
+     * This method is going to list all the vehicles available Within the range entered by the user.
+     */
     public static void findVehiclesByPrice() {
-        System.out.print("Please Enter Price Range: (ex. 10,000-20,000)\nMin Value");
+        System.out.print("Please Enter Price Range: (ex. 10,000-20,000)\nMin Value: ");
         int minCarPrice = scanner.nextInt();
-        System.out.print("Max Value:");
+        System.out.print("Max Value: ");
         int maxCarPrice = scanner.nextInt();
         for (int i = 0; i < myVehicles.length; i++) {
-            if(myVehicles[i] == null){
+            if (myVehicles[i] == null) {//if there's an empty object break out the room
                 break;
             }
-            if ((minCarPrice < myVehicles[i].getPrice()) && (myVehicles[i].getPrice() < maxCarPrice) ){
+            if ((minCarPrice < myVehicles[i].getPrice()) && (myVehicles[i].getPrice() < maxCarPrice)) {
                 System.out.println(myVehicles[i].getMakeModel());
             }
-
         }
+    }
 
+    public static void findVehicleByMakeModel() {
+        System.out.println("What Make/Model do you want listed:");
+        String userMake = scanner.nextLine();
+        for (int i = 0; i < myVehicles.length; i++) {
+            if (myVehicles[i] == null) {
+                break;
+            }
+            if (userMake.equalsIgnoreCase(myVehicles[i].getMakeModel())) {
+                System.out.printf("There's a %s \n", myVehicles[i].getMakeModel());
+            }
+        }
+    }
+
+    public static void findVehicleByColor() {
+        System.out.println("What Color cars do you want listed:");
+        String userColor = scanner.nextLine();
+        for (int i = 0; i < myVehicles.length; i++) {
+            if (myVehicles[i] == null) {
+                break;
+            }
+            if (userColor.equalsIgnoreCase(myVehicles[i].getColor())) {
+                System.out.printf("There's a %s in %s\n", myVehicles[i].getMakeModel(), userColor);
+            }
+        }
     }
 
     /**
