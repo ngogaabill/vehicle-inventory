@@ -14,7 +14,6 @@ public class VehicleInventory {
         myVehicles[5] = new Vehicle(101126, "Jeep Wrangler", "Yellow", "30000", 1600);        //long vehicleId, String makeModel, String color, String odometerReading, float price
 
         while (true) {
-
             System.out.println("What do you want to do?");
             System.out.println(" 1 - List all vehicles");
             System.out.println(" 2 - Search by make/model");
@@ -29,7 +28,7 @@ public class VehicleInventory {
                 case 1:
                     listAllVehicles();
                     break;
-                case 2:
+                case 3:
                     findVehiclesByPrice();
                     break;
                 case 5:
@@ -42,9 +41,11 @@ public class VehicleInventory {
         }
 
     }
-/**
- * Add Vehicle to the list if there's an open spot to put the car.
-* */
+
+    /**
+     * Add Vehicle to the list if there's an open spot to put the car.
+     *
+     */
     public static void addAVehicle() {
         System.out.println("Enter vehicle Id:");
 
@@ -69,6 +70,19 @@ public class VehicleInventory {
     }
 
     public static void findVehiclesByPrice() {
+        System.out.print("Please Enter Price Range: (ex. 10,000-20,000)\nMin Value");
+        int minCarPrice = scanner.nextInt();
+        System.out.print("Max Value:");
+        int maxCarPrice = scanner.nextInt();
+        for (int i = 0; i < myVehicles.length; i++) {
+            if(myVehicles[i] == null){
+                break;
+            }
+            if ((minCarPrice < myVehicles[i].getPrice()) && (myVehicles[i].getPrice() < maxCarPrice) ){
+                System.out.println(myVehicles[i].getMakeModel());
+            }
+
+        }
 
     }
 
